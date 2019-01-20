@@ -1,0 +1,98 @@
+﻿@model Logik.Profiles
+<div id="Huvudfonster" class="col-md-8" style="margin-bottom: 10px; align-items:center">
+    <div class="row-message">
+        @{ Html.RenderAction("Index", "Posts");}
+    </div>
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+
+                <div class="profile-userpic">
+                    @{ var base64 = Convert.ToBase64String(Model.Picture);
+                    var img = String.Format("data:image/gif;base64,{0}", base64);}
+
+                    <img src="@img" alt="Bild">
+                </div>
+
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @Model.User.Name
+                    </div>
+                </div>
+
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li>
+                            <a id="mId" href="@Url.Action("ChangeProfile", "Manage")">
+                                <i class="glyphicon glyphicon-cog"></i>
+                                Manage profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a id="SaveProfile" href="@Url.Action("SaveProfileData", "Manage")">
+                                <i class="glyphicon glyphicon-download"></i>
+                                Export profile
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+ 
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Description
+                    </div>
+                    <div id="topVisitors" class="panel-body">
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-confirm1" style="display:none">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+            Are you sure you want to save this file to desktop?
+        </p>
+    </div>
+    <div class="row-message">
+        @{ Html.RenderAction("Index", "Posts", new { id = Model.Id });}
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#SaveProfile").on("click", function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $("#dialog-confirm1").dialog({
+
+                resizable: false,
+                height: "auto",
+                width: 300,
+                modal: true,
+                draggable: true,
+                buttons: {
+                    "OK": function () {
+                        $(this).dialog("close");
+                        window.location = url;
+                    }, "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#dialog-confirm1").dialog('open');
+            return false;
+        });
+    });
+
+</script>

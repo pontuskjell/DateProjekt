@@ -1,0 +1,28 @@
+﻿@model Logik.Match
+
+<div id="Huvudfonster" class="col-md-8" style="margin-bottom: 10px; align-items:center">
+    <div id="dialog-message" title="Match" style="display : none">
+        <p>
+            Your matching percentage is @Model.procent.ToString() %.
+        </p>
+
+    </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+    $(document).ready(function () {
+                $("#dialog-message").dialog({
+                    modal: true,
+                    close: function (event, ui) { window.location.href = '@Model.url'; },
+            buttons: {
+                Ok: function () {
+                    $(this).dialog("close");
+                   window.location.href = '@Model.url';
+                        }
+                    }
+        });
+        return false;
+    });
+
+</script>

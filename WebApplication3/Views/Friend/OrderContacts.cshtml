@@ -1,0 +1,70 @@
+﻿@model Logik.OrderContacts
+
+
+<div id="Huvudfonster" class="col-md-8" style="margin-bottom: 10px; align-items:center">   
+    <table class="table">
+        <tr>
+            @Html.Label("Fotboll")
+            @foreach (var item in Model.Fotboll)
+            {
+
+                var base64 = Convert.ToBase64String(item.Picture);
+                var img = String.Format("data:image/gif;base64,{0}", base64);
+
+                <td>
+                    <a href="@Url.Action("GetProfile", "Home", new { id = item.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="50" height="50" alt="Bild" /></a>
+
+                </td>
+            }
+        </tr>
+        </table>
+        <table class="table">
+            <tr>
+            @Html.Label("Golf")
+            @foreach (var item in Model.Golf)
+            {
+
+                var base64 = Convert.ToBase64String(item.Picture);
+                var img = String.Format("data:image/gif;base64,{0}", base64);
+
+                <td>
+                    <a href="@Url.Action("GetProfile", "Home", new { id = item.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="50" height="50" alt="Bild" /></a>
+
+                </td>
+
+            }
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            @Html.Label("Kampsport")
+            @foreach (var item in Model.Kampsport)
+            {
+
+                var base64 = Convert.ToBase64String(item.Picture);
+                var img = String.Format("data:image/gif;base64,{0}", base64);
+
+                <td>
+                    <a href="@Url.Action("GetProfile", "Home", new { id = item.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="50" height="50" alt="Bild" /></a>
+
+                </td>
+
+            }
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            @Html.Label("Hockey")
+            @foreach (var item in Model.Hockey)
+            {
+
+                var base64 = Convert.ToBase64String(item.Picture);
+                var img = String.Format("data:image/gif;base64,{0}", base64);
+
+                <td>
+                    <a href="@Url.Action("GetProfile", "Home", new { id = item.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="50" height="50" alt="Bild" /></a>
+                </td>
+            }
+        </tr>
+    </table>
+</div>

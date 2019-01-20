@@ -1,0 +1,81 @@
+﻿@model WebApplication3.Controllers.PostIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model.Posts)
+{
+    <div class="panel-group" style="margin-bottom: 20px;">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5 class="media-heading">@item.ProfileAuthor.User.Name</h5>
+            </div>
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-left">
+                        @if (item.File == null)
+            {
+            }
+            else
+            {
+                <img src="@Url.Action("Image", new { id = item.Id })" class="media-object" style="width:50px">
+}
+                    </div>
+                    <div class="media-body">                     
+                        <p class="test">@Html.DisplayFor(modelItem => item.Text)</p>
+                    </div>
+
+                </div>
+                @{ if (item.ProfileReceiver.Id == Model.Profile.Id)
+        {
+                      
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger pull-right", Id = "DeleteBtn" })
+} }
+            </div>
+        </div>
+    </div>
+}
+
+
+<div id="dialog-confirm" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        Are you sure?
+    </p>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+
+
+    $("#DeleteBtn").on("click", function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $("#dialog-confirm").dialog({
+
+            resizable: false,
+            height: "auto",
+            width: 300,
+            modal: true,
+            draggable: true,
+            buttons: {
+                "OK": function () {
+                    $(this).dialog("close");
+                    window.location = url;
+                }, "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#dialog-confirm").dialog('open');
+        return false;
+    });
+
+</script>
+

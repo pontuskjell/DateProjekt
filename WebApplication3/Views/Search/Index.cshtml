@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Logik.UserAndProfiles>
+
+<div id="Huvudfonster" class="col-md-8" style="margin-bottom: 10px; align-items:center">
+
+    <h2>Search</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile.Picture)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var base64 = Convert.ToBase64String(item.Profile.Picture);
+            var img = String.Format("data:image/gif;base64,{0}", base64);
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+
+                <td style="display: inline-block; padding-right: 10px;">
+                    <a href="@Url.Action("GetProfile", "Home", new { id = item.Profile.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="50" height="50" alt="Picture" class="img-thumbnail" /></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Partners")'">Find Matching Partners</button>
+</div>

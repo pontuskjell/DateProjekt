@@ -1,0 +1,123 @@
+﻿@model WebApplication3.Models.RegisterViewModel
+@{
+    /**/
+
+    ViewBag.Title = Logik.Languages.Resources.Register;
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-row" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthdate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Birthdate, new { @Value = "", @class = "form form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Genders, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Logik.Languages.Resources.Male    @Html.RadioButtonFor(m => m.Genders, Logik.Languages.Resources.Male, new { @class = "radio-inline" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Logik.Languages.Resources.Female    @Html.RadioButtonFor(m => m.Genders, Logik.Languages.Resources.Female, new { @class = "radio-inline" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+            @Html.Label(Logik.Languages.Resources.Interests, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+
+    <div class="form-group" style="align-content:flex-start">
+        @for (int i = 0; i < Model.Interests.Count; i++)
+        {
+            @Html.HiddenFor(m => m.Interests[i].Id)
+            switch (Model.Interests[i].Name)
+            {
+                case "Fotboll":
+                    @Html.Label(Logik.Languages.Resources.Football, new { @class = "col-md-2 control-label" });
+                    break;
+                case "KampSport":
+                    @Html.Label(Logik.Languages.Resources.Martialarts, new { @class = "col-md-2 control-label" });
+                    break;
+                case "Golf":
+                    @Html.Label(Logik.Languages.Resources.Golf, new { @class = "col-md-2 control-label" });
+                    break;
+                case "Hockey":
+                    @Html.Label(Logik.Languages.Resources.Hockey, new { @class = "col-md-2 control-label" });
+                    break;
+            }
+            @Html.CheckBoxFor(m => m.Interests[i].Checked, new { @class = "form-control" })
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.LabelFor(m => m.Picture, new { @class = "control-lable col-md-2" })
+    <div class="col-md-10">
+        <input type="file" name="upload" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value=@Logik.Languages.Resources.Register style="margin-bottom: 20px; margin-top: 20px" />
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+
+    $(function () {
+        $(".form").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1950:2017',
+            minDate: new Date(1950, 10 - 1, 25),
+            maxDate: '+30Y'
+
+        });
+    });
+
+</script>

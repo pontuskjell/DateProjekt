@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logik", "Logik\Logik.csproj", "{840BF090-1C8B-48DE-AD54-CB81D08ADC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3", "WebApplication3\WebApplication3.csproj", "{4C814EAC-9C0E-44C1-B04F-36ABA3B83C4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{840BF090-1C8B-48DE-AD54-CB81D08ADC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840BF090-1C8B-48DE-AD54-CB81D08ADC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{840BF090-1C8B-48DE-AD54-CB81D08ADC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840BF090-1C8B-48DE-AD54-CB81D08ADC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C814EAC-9C0E-44C1-B04F-36ABA3B83C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C814EAC-9C0E-44C1-B04F-36ABA3B83C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C814EAC-9C0E-44C1-B04F-36ABA3B83C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C814EAC-9C0E-44C1-B04F-36ABA3B83C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {395A15D3-0CD6-4C7A-ADF8-4A67FA925826}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    <div id="Kontaktlista" class="col-md-2">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center" >
+                 My friends   
+                </div>
+                <div class="panel-body text-center">
+                    @{ Html.RenderAction("Contacts", "Friend");}
+                </div>
+                </div>
+            </div>
+        </div>
+}
+else
+{
+}
+
+

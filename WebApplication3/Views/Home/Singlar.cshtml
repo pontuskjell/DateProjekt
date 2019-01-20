@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Logik.Profiles>
+
+
+<ul style="list-style: none;">
+
+    @foreach (var item in Model)
+    {
+
+        var base64 = Convert.ToBase64String(item.Picture);
+        var img = String.Format("data:image/gif;base64,{0}", base64);
+
+        <li style="display: inline-block; margin-right: 5px;"><a href="@Url.Action("GetProfile", "Home", new { id = item.Id.ToString() }, null)"> <img src="@Url.Content(img)" width="60" height="60" alt="Profile Picture" class="img-thumbnail" /></a></li>
+
+}
+
+</ul>
+

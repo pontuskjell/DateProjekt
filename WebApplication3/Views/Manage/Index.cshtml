@@ -1,0 +1,73 @@
+﻿@model WebApplication3.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+
+<div id="Huvudfonster" class="col-md-8" style="margin-bottom: 10px; align-items:center">
+    <h2>@ViewBag.Title.</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <h4>Change your account settings</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Change Information:</dt>
+            <dd>
+                @Html.ActionLink("Change User Information", "ChangeInformation")
+            </dd>
+            <dt>Password:</dt>
+            <dd>
+                @if (Model.HasPassword)
+            {
+                    @Html.ActionLink("Change Password", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Create", "SetPassword")
+                }
+
+            </dd>
+        </dl>
+        <div class="col-md-offset-9 col-md-3" style="margin-top: 20px;">
+            <a id="Inactivate" class="btn btn-danger" href="@Url.Action("InactivateAccount", "Manage")"> Inactivate account </a>
+        </div>
+    </div>
+</div>
+
+    <div id="dialog-confirm" style="display: none">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+            Are you sure?
+        </p>
+    </div>
+    
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#Inactivate").on("click", function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                $("#dialog-confirm").dialog({
+
+                    resizable: false,
+                    height: "auto",
+                    width: 300,
+                    modal: true,
+                    draggable: true,
+                    buttons: {
+                        "OK": function () {
+                            $(this).dialog("close");
+                            window.location = url;
+                        }, "Cancel": function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#dialog-confirm").dialog('open');
+                return false;
+            });
+        });
+
+</script>
